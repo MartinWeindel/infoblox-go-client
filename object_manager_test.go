@@ -817,14 +817,14 @@ var _ = Describe("Object Manager", func() {
 		text := "test-text"
 		dnsView := "default"
 		recordName := "test"
-		ttl := 30
+		ttl := uint(30)
 		fakeRefReturn := fmt.Sprintf("record:txt/ZG5zLmJpbmRfY25h:%s/%20%20", recordName)
 
 		aniFakeConnector := &fakeConnector{
 			createObjectObj: NewRecordTXT(RecordTXT{
 				Name: recordName,
 				Text: text,
-				TTL:  ttl,
+				Ttl:  ttl,
 				View: dnsView,
 			}),
 			getObjectRef: fakeRefReturn,
@@ -833,12 +833,13 @@ var _ = Describe("Object Manager", func() {
 				Text: text,
 				View: dnsView,
 				Ref:  fakeRefReturn,
+				Ttl:  ttl,
 			}),
 			resultObject: NewRecordTXT(RecordTXT{
 				Name: recordName,
 				Text: text,
 				View: dnsView,
-				TTL:  ttl,
+				Ttl:  ttl,
 				Ref:  fakeRefReturn,
 			}),
 			fakeRefReturn: fakeRefReturn,
